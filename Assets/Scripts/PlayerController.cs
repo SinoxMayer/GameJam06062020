@@ -82,6 +82,10 @@ public class PlayerController : MonoBehaviour
         {
             gameManager.ScoreCalculate();
         }
+        else if (other.gameObject.CompareTag("Trashcan") && gameManager.isGameActive)
+        {
+            gameManager.ScoreDownCal();
+        }
 
 
     }
