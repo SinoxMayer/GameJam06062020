@@ -283,6 +283,7 @@ MonoBehaviour:
   - {fileID: 1332742537080713562, guid: 70a844f566a7ea1498948f514b88f86d, type: 3}
   - {fileID: 8810343626579777120, guid: c8ad10279949b3a4f8aa6bfc18648d31, type: 3}
   - {fileID: 3365524351234845262, guid: 720f215510f71b945a01520b6cbcd52a, type: 3}
+  - {fileID: 7292890814695721873, guid: bdf53cd390047c34db6c8b4ed0faeb64, type: 3}
   bottle: {fileID: 3365524351234845262, guid: 720f215510f71b945a01520b6cbcd52a, type: 3}
   maxSpawnPoint: 25
   minSpawnPoint: 0

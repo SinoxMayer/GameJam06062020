@@ -11,6 +11,7 @@ TagManager:
   - Trashcan
   - Opsticale
   - Ground
+  - Recycle
   layers:
   - Default
   - TransparentFX

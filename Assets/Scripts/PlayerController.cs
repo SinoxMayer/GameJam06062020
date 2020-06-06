@@ -78,6 +78,12 @@ public class PlayerController : MonoBehaviour
             gameManager.CollectingBottle();
             Debug.Log(gameManager.collected);
         }
+        else if (other.gameObject.CompareTag("Recycle") && gameManager.isGameActive)
+        {
+            gameManager.ScoreCalculate();
+        }
+
+
     }
 
 

@@ -27,5 +27,12 @@ public class GameManager : MonoBehaviour
         collected += 1;
     }
 
+    public void ScoreCalculate()
+    {
+
+        score = (int)Mathf.Log(collected, 4)*10;
+        collected = 0;
+        Debug.Log(score);
+    }
 
 }
