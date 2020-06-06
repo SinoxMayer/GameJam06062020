@@ -10,19 +10,20 @@ public class PlayerController : MonoBehaviour
     public bool isPlayerAlive = true;
     public bool isOnGround = true;
     private GameManager gameManager;
+    private GroundManager groundManager;
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-
+        groundManager = GameObject.Find("GorundManager").GetComponent<GroundManager>();
         gameManager.collected = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.isActiveAndEnabled)
+        if (gameManager.isGameActive)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -86,7 +87,10 @@ public class PlayerController : MonoBehaviour
         {
             gameManager.ScoreDownCal();
         }
-
+        else if (other.gameObject.CompareTag("Opsticale") && gameManager.isGameActive)
+        {
+            groundManager.LengyhUpdate(1);
+        }
 
     }
 

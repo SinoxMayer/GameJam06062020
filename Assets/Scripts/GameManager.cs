@@ -6,17 +6,24 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
 
-    public bool isGameActive = true;
+    public bool isGameActive = false;
+    public bool isGameEnd = true;
+
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI bottleText;
 
     public int score = 0;
     public int collected = 0;
+
+    private GroundManager groundManager;
+
+   
     // Start is called before the first frame update
     void Start()
     {
         scoreText.text = "Score";
         bottleText.text = "Collected Bottles";
+        groundManager = GameObject.Find("GorundManager").GetComponent<GroundManager>();
     }
 
     // Update is called once per frame
@@ -30,6 +37,11 @@ public class GameManager : MonoBehaviour
 
         collected += 1;
         bottleText.text = collected.ToString();
+
+        if (collected == 5)
+        {
+            groundManager.LengyhUpdate(-1);
+        }
        
     }
 
@@ -48,6 +60,7 @@ public class GameManager : MonoBehaviour
 
     public void ScoreDownCal()
     {
+
 
         if (collected > 0)
         {
