@@ -42,7 +42,11 @@ public class GameManager : MonoBehaviour
         {
             groundManager.LengyhUpdate(-1);
         }
-       
+        if (groundManager.length > 13)
+        {
+            groundManager.LengyhUpdate(4);
+            score += 30;
+        }
     }
 
     public void ScoreCalculate()

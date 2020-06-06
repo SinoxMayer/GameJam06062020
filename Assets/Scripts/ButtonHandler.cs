@@ -18,4 +18,10 @@ public class ButtonHandler : MonoBehaviour
 
         Application.Quit();
     }
+    public void RestartGame()
+    {
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
 }

@@ -38,7 +38,7 @@ public class SpawnManager : MonoBehaviour
         // Update is called once per frame
         void  LateUpdate()
     {
-        maxSpawnPoint = groundManager.length;
+        maxSpawnPoint = groundManager.length -1;
     }
 
 
