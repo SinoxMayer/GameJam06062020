@@ -1,16 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Android;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
 
     [SerializeField] private float playerSpeed = 10f;
+    [SerializeField] private float downBound = -2;
+
+    public Image imageAwsome;
+    public Image imageGoodJob;
+
     private float horizantalnput = 1;
+    private float timeCountDown = 1f ;
+
     public bool isPlayerAlive = true;
     public bool isOnGround = true;
     private GameManager gameManager;
     private GroundManager groundManager;
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +40,10 @@ public class PlayerController : MonoBehaviour
             {
                 horizantalnput *= -1;
             }
+            else if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
+            {
+                horizantalnput *= -1;
+            }
 
             PlayerMove();
 
@@ -38,6 +53,34 @@ public class PlayerController : MonoBehaviour
         {
             gameManager.isGameActive = false;
         }
+
+
+        if (transform.position.y < downBound)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+
+        if (imageAwsome.enabled )
+        {
+            timeCountDown -= Time.deltaTime;
+            if (timeCountDown < 0)
+            {
+                imageAwsome.enabled = false;
+                timeCountDown = 1f;
+            }
+        }
+        else if (imageGoodJob.enabled)
+        {
+            timeCountDown -= Time.deltaTime;
+            if (timeCountDown < 0)
+            {
+                imageGoodJob.enabled = false;
+                timeCountDown = 1f;
+            }
+
+
+        }
+
 
     }
 
@@ -77,11 +120,15 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(other.gameObject);
             gameManager.CollectingBottle();
-            Debug.Log(gameManager.collected);
+
+            imageAwsome.enabled = true;
+             
         }
         else if (other.gameObject.CompareTag("Recycle") && gameManager.isGameActive)
         {
             gameManager.ScoreCalculate();
+
+            imageGoodJob.enabled = true;
         }
         else if (other.gameObject.CompareTag("Trashcan") && gameManager.isGameActive)
         {
@@ -89,6 +136,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Opsticale") && gameManager.isGameActive)
         {
+            Destroy(other.gameObject);
             groundManager.LengyhUpdate(1);
         }
 

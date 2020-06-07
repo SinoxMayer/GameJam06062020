@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
         {
             groundManager.LengyhUpdate(4);
             score += 30;
+            scoreText.text = score.ToString();
         }
     }
 
