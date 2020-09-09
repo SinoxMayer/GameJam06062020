@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 
     public Image imageAwsome;
     public Image imageGoodJob;
+    public Image imageNoo;
+    public Image imageOuch;
 
     private float horizantalnput = 1;
     private float timeCountDown = 1f ;
@@ -80,7 +82,28 @@ public class PlayerController : MonoBehaviour
 
 
         }
+        else if (imageNoo.enabled)
+        {
+            timeCountDown -= Time.deltaTime;
+            if (timeCountDown < 0)
+            {
+                imageNoo.enabled = false;
+                timeCountDown = 1f;
+            }
 
+
+        }
+        else if (imageOuch.enabled)
+        {
+            timeCountDown -= Time.deltaTime;
+            if (timeCountDown < 0)
+            {
+                imageOuch.enabled = false;
+                timeCountDown = 1f;
+            }
+
+
+        }
 
     }
 
@@ -121,23 +144,37 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             gameManager.CollectingBottle();
 
-            imageAwsome.enabled = true;
+                imageAwsome.enabled = true;
+          
+            
              
         }
         else if (other.gameObject.CompareTag("Recycle") && gameManager.isGameActive)
         {
+            Debug.Log(gameManager.collected );
             gameManager.ScoreCalculate();
 
-            imageGoodJob.enabled = true;
+                imageGoodJob.enabled = true;
+
+           
         }
         else if (other.gameObject.CompareTag("Trashcan") && gameManager.isGameActive)
         {
             gameManager.ScoreDownCal();
+            if (gameManager.collected > 0)
+            {
+                imageNoo.enabled = true;
+            }
+           
         }
         else if (other.gameObject.CompareTag("Opsticale") && gameManager.isGameActive)
         {
             Destroy(other.gameObject);
             groundManager.LengyhUpdate(1);
+
+                imageOuch.enabled = true;
+          
+            
         }
 
     }
